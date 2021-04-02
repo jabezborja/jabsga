@@ -21,6 +21,12 @@
         .url-name-container span {
             margin-top: 12px;
         }
+
+        .new-url {
+            background-color: rgb(66, 66, 66);
+            color: white;
+            padding: 5px;
+        }
     </style>
 {% endblock %}
 
@@ -32,26 +38,22 @@
                 {% csrf_token %}
                 {% for form in forms %}
                     <!--Perform checks-->
-                    {% if form.name == "title" %}
-                        Title
-                    {% elif form.name == "url_name" %}
-                        Url Name
-                    {% elif form.name == "url" %}
-                        Url
-                    {% endif %}
-                    
-                    {% if form.name == "url_name"%}
-                        <div class="url-name-container">
-                            <span>jabs.ga/</span>
-                            {{ form }}
-                        </div>
-                    {% else %}
+                    {% if form.name == "url" %}
+                        Paste a long URL, we'll shorten that.
                         {{ form }}
                     {% endif %}
                 {% endfor %}
-                <button class="submit-btn" type="submit">Create URL</button>
+                <button class="submit-btn" type="submit">Shorten URL</button>
             </form>
-        {% else %}
+        {% elif from == "post" %}
+            <h1>Your URL is now shorten!</h1>
+            <div>
+                New Url: <span class="new-url">https://jabs.ga/{{ urlname }}<span>
+            </div>
+            <p>To Url: {{ url }}</p><br>
+            <br>
+            <a href="/">Edit URL</a> or <a href="/">New URL</a>
+        {% elif from == "get_url" %}
             {% if url == None %}
                 Sorry your URL does not exist
             {% else %}

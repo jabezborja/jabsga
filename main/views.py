@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Url
-from .forms import NewUrlForm
+from .forms import NewUrlForm, EditUrlForm
+import string
+import random
 
 def home(request):
     form = NewUrlForm(request.POST or None)
@@ -11,16 +13,21 @@ def home(request):
         "from": "home"
     }
 
+
+    # If the method is not POST then just render the html
     if request.method != "POST":
         return render(request, 'home.html', context)
 
+    # Perform form checks
     if not form.is_valid():
         return render(request, "home.html", context)
 
-    title = form.cleaned_data['title']
-    urlName = form.cleaned_data['url_name']
-    url = form.cleaned_data['url']
+    random_url = ''.join(random.choice(string.ascii_letters) for i in range(7))
 
+    title = "My Url"
+    urlName = random_url
+    url = form.cleaned_data['url']
+    
     register = Url(
         title=title,
         urlName=urlName,
@@ -28,6 +35,30 @@ def home(request):
     )
 
     register.save()
+
+    context['from'] = "post"
+    context['title'] = title
+    context['urlname'] = urlName
+    context['url'] = url
+
+    return render(request, 'home.html', context)
+
+def edit_url(request, url):
+    url = Url.objects.get(urlName=url)
+    form = EditUrlForm(request.POST or None)
+
+    if request.method != "POST":
+        return render(request, 'home.html', context)
+
+    # Perform form checks
+    if not form.is_valid():
+        return render(request, "home.html", context)
+
+    url.title = form.title
+    url.urlName = form.urlName
+    url.url = form.url
+
+    url.save()
 
     return HttpResponseRedirect(f'/')
 
