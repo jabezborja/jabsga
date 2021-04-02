@@ -35,14 +35,35 @@
             </form>
         {% elif from == "post" %}
             <!--Page if the URL is entered-->
-            <h1>Your URL is now shorten!</h1>
+            <h1>Your URL has been shortened!</h1>
             <div>
-                New Url: <span onclick="copyText('{{ urlname }}')" class="tooltip new-url">https://https://jabsga.herokuapp.com/{{ urlname }}<span>
+                Long URL: {{url}}<br>
+                Shortened URL: <strong style="color: rgb(167, 167, 0);">jabsga.herokuapp.com/{{ urlname }}</strong>
+                <br>
+                <span onclick="copyText('{{ urlname }}')" class="tooltip new-url">
+                    Copy
                     <span class="tooltiptext">Copy to clipboard</span>
+                </span>
+                <br>
+                <hr style="width: 300px; float: left;">
+                <br>
             </div>
-            <p>To Url: {{ url }}</p><br>
-            <br>
-            <a href="/">Edit URL</a> or <a href="/">New URL</a>
+            <form>
+                <div class="field url-title">
+                    <span>Title</span><br>
+                    <input type="text" id='txtt' value="{{title}}"/>
+                </div>
+                <div class="field url-name">
+                    <span>Customize Back-Half</span><br>
+                    <label for='txt'>jabs.ga/
+                        <input type="text" id='txtt' value="{{urlname}}"/>
+                    </label>
+                </div>
+                <span style="font-size: 13px; padding: 5px;">
+                    Note: The Jabs.ga domain is not working yet, please use the HerokuApp domain.
+                </span><br><br>
+                <button class="save-btn">Save</button>
+            </form>
         {% elif from == "get_url" %}
             <!--Getting the URL-->
             {% if url is not None %}

@@ -20,6 +20,45 @@
 .new-url {
     background-color: rgb(66, 66, 66);
     color: white;
-    padding: 5px;
+    padding: 3px;
     cursor: pointer;
+    height: 15px;
+    width: 33px;
+    font-size: 14px;
+    border-radius: 2px;
+
+    margin-top: 6px;
+}
+
+.field {
+    border: solid 1px #8f8f8f;
+    width: 250px;
+    height: 43px;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 8px;
+}
+.field span {
+    color: #555555;
+}
+
+#txtt {
+    margin-top: 5px;
+    margin-right: 10px;
+    border: none;
+    outline: none;
+}
+label[for="txtt"] {
+    border: solid 1px #8f8f8f;
+    padding: 0 0 0 5px;
+}
+
+.save-btn {
+    margin: 8px;
+    padding: 7px;
+    width: 260px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f3a034;
+    color: white;
 }
