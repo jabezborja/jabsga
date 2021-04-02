@@ -20,6 +20,7 @@
 {% block content %}
     <div>
         {% if from == "home" %}
+            <!--Home Page-->
             <h1>URL Shortener</h1>
             <form action="/" method="POST">
                 {% csrf_token %}
@@ -33,6 +34,7 @@
                 <button class="submit-btn" type="submit">Shorten URL</button>
             </form>
         {% elif from == "post" %}
+            <!--Page if the URL is entered-->
             <h1>Your URL is now shorten!</h1>
             <div>
                 New Url: <span onclick="copyText('{{ urlname }}')" class="tooltip new-url">https://https://jabsga.herokuapp.com/{{ urlname }}<span>
@@ -42,10 +44,11 @@
             <br>
             <a href="/">Edit URL</a> or <a href="/">New URL</a>
         {% elif from == "get_url" %}
-            {% if url == None %}
-                Sorry your URL does not exist
-            {% else %}
+            <!--Getting the URL-->
+            {% if url is not None %}
                 You are being redirected to {{ url }} in <span id="countdown">3</span>
+            {% else %}
+                Sorry your URL does not exist
             {% endif %}
         {% endif %}
     </div>
