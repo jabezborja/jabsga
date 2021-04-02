@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <style>
+        .form-field {
+            height: 18px;
+            display: block;
+            margin: 10px;
+            width: 200px;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+        }
+
+        .url-name-container {
+            margin-left: 10px;
+            display: flex;
+        }
+        .url-name-container span {
+            margin-top: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% if from == "home" %}
+            <h1>URL Shortener</h1>
+            <form action="/" method="POST">
+                {% csrf_token %}
+                {% for form in forms %}
+                    <!--Perform checks-->
+                    {% if form.name == "title" %}
+                        Title
+                    {% elif form.name == "url_name" %}
+                        Url Name
+                    {% elif form.name == "url" %}
+                        Url
+                    {% endif %}
+                    
+                    {% if form.name == "url_name"%}
+                        <div class="url-name-container">
+                            <span>jabs.ga/</span>
+                            {{ form }}
+                        </div>
+                    {% else %}
+                        {{ form }}
+                    {% endif %}
+                {% endfor %}
+                <button class="submit-btn" type="submit">Create URL</button>
+            </form>
+        {% else %}
+            {% if url == None %}
+                Sorry your URL does not exist
+            {% else %}
+                You are being redirected to {{ url }} in <span id="countdown">3</span>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    {% if from == "get_url" %}
+        {% if url is not None %}
+            <script type="text/javascript">
+                var countDown = document.getElementById("countdown");
+                let count = 4;
+
+                function count_decrement() {
+                    if (count == 1) {
+                        window.location.href = "{{ url }}";
+                        return;
+                    }
+                    
+                    count--;
+                    countDown.innerHTML = count;
+
+                    setTimeout(count_decrement, 1000);
+                }
+
+                setTimeout(count_decrement, 1000);
+            </script>
+        {% endif %}
+    {% endif %}
+{% endblock %}
