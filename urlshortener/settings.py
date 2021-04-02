@@ -21,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECRET_KEY is ignored in .gitignore, so please provide your own.
-with open(os.path.join(".env")) as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = 'u+f=)3@2*a%u*=7erna*8yo&#&g5o0n*_z#wutj)n4fr+&)kc6'
 
 HEROKU = ('ENV' in os.environ and os.environ['ENV'] == 'heroku')
 
