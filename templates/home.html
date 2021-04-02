@@ -26,8 +26,67 @@
             background-color: rgb(66, 66, 66);
             color: white;
             padding: 5px;
+            cursor: pointer;
+        }
+
+        /*TOOL TIP*/
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            top: -5px;
+            left: 105%;
+            margin-top: 5px;
+            background-color: rgb(100, 100, 100);
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            
+            position: absolute;
+            z-index: 1;
+
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .tooltip .tooltiptext::after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent rgb(100, 100, 100) transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
+{% endblock %}
+
+{% block copyscript %}
+    <script type="text/javascript">
+        function copyText() {
+            var textToCopy = "https://jabsga.herokuapp.com/{{ urlname }}";
+
+            var myTemporaryInputElement = document.createElement("input");
+            myTemporaryInputElement.type = "text";
+            myTemporaryInputElement.value = textToCopy;
+
+            document.body.appendChild(myTemporaryInputElement);
+
+            myTemporaryInputElement.select();
+            document.execCommand("Copy");
+
+            document.body.removeChild(myTemporaryInputElement);
+        }
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -48,7 +107,8 @@
         {% elif from == "post" %}
             <h1>Your URL is now shorten!</h1>
             <div>
-                New Url: <span class="new-url">https://jabs.ga/{{ urlname }}<span>
+                New Url: <span onclick="copyText()" class="tooltip new-url">https://jabs.ga/{{ urlname }}<span>
+                    <span class="tooltiptext">Copy to clipboard</span>
             </div>
             <p>To Url: {{ url }}</p><br>
             <br>
