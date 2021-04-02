@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 with open(os.path.join(".env")) as f:
     SECRET_KEY = f.read().strip()
 
+HEROKU = ('ENV' in os.environ and os.environ['ENV'] == 'heroku')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not HEROKU
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
