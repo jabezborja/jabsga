@@ -1,3 +1,25 @@
-.boy-noice {
-    background-color: black;
+.form-field {
+    height: 18px;
+    display: block;
+    margin: 10px;
+    width: 200px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+}
+
+.url-name-container {
+    margin-left: 10px;
+    display: flex;
+}
+.url-name-container span {
+    margin-top: 12px;
+}
+
+.new-url {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    padding: 5px;
+    cursor: pointer;
 }
