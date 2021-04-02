@@ -9,6 +9,14 @@
     <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 
+{% block bodyscript %}
+    {% if from == "get_url" %}
+        {% if url is not None %}
+            onload="start_count('{{ url }}')"
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div>
         {% if from == "home" %}

@@ -11,7 +11,7 @@
     {% block copyscript %}{% endblock %}
     <title>Url Shortener</title>
 </head>
-<body>
+<body {% block bodyscript %}{% endblock %}>
     {% block content %}
     {% endblock %}
     {% block script %}
