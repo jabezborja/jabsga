@@ -28,7 +28,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Installing pip packages
-        run: pip install requirements.txt
+        run: dir
         
       - name: Running Django now...
         run: py manage.py runserver
