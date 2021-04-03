@@ -30,6 +30,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+          
+      - name: setting up environment variables...
+        run: set SECRET_KEY="placeholder123"
 
       # Runs a single command using the runners shell
       - name: Installing python dependencies
