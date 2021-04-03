@@ -40,5 +40,5 @@ jobs:
         env:
           SECRET_KEY: "placeholder123"
         
-      - name: Running Django now...
-        run: python manage.py runserver
+      - name: Testing django...
+        run: python manage.py test
