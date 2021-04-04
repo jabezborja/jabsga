@@ -1,6 +1,8 @@
 # Jabsga: URL shortener for short and concise URLs 💖🇵🇭
 Jabsga is a free URL shortening service for making URLs more shorter and more concise.
 
+Example here: https://jabsga.herokuapp.com/zGGGAuV
+
 Created with Python Django Web Framework, the design is not yet good but it will be good time by time.
 
 As of now, the URL of Jabsga which is `jabs.ga/` is not yet available because Heroku disabling it without a card, but soon it will be short as it should be.
