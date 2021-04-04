@@ -1,4 +1,4 @@
-# Jabsga: URL shortener, short and concise URLs 💖🇵🇭
+# Jabsga: URL shortener for short and concise URLs 💖🇵🇭
 Jabsga is a free URL shortening service for making URLs more shorter and more concise.
 
 Created with Python Django Web Framework, the design is not yet good but it will be good time by time.
