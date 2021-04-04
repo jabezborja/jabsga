@@ -3,7 +3,7 @@ Jabsga is a free URL shortening service for making URLs more shorter and more co
 
 Example here: https://jabsga.herokuapp.com/zGGGAuV
 
-Created with Python Django Web Framework, the design is not yet good you can help me with the design and make it better time by time 😊
+Created with Python Django Web Framework, the design is not yet good, you can help me with the design and make it better time by time 😊 Feel free to open a pull request!
 
 As of now, the URL of Jabsga which is `jabs.ga/` is not yet available because Heroku disabling it without a card, but soon it will be short as it should be.
 
