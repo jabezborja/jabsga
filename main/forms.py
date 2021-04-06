@@ -18,11 +18,11 @@ class NewUrlForm(forms.Form):
 class EditUrlForm(forms.Form):
     title = forms.CharField(
         required=True,
-        label=('Nice'),    
         widget=forms.Textarea(
             attrs={
-                'class': 'form-control',
-                'class': 'form-field',
+                'id': 'txtt',
+                'class': 'form-control form-field',
+                'type': 'text'
             }
         )
     )
@@ -35,12 +35,4 @@ class EditUrlForm(forms.Form):
             }
         )
     )
-    url = forms.CharField(
-        required=True,
-        widget=forms.Textarea(
-            attrs={
-                'class': 'form-control',
-                'class': 'form-field',
-            }
-        )
-    )
+    

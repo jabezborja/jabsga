@@ -43,10 +43,8 @@
 }
 
 #txtt {
-    margin-top: 5px;
-    margin-right: 10px;
-    border: none;
-    outline: none;
+    margin-top: 0px;
+    margin-left: 10px;
 }
 label[for="txtt"] {
     border: solid 1px #8f8f8f;

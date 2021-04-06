@@ -24,13 +24,8 @@
             <h1>URL Shortener</h1>
             <form action="/" method="POST">
                 {% csrf_token %}
-                {% for form in forms %}
-                    <!--Perform checks-->
-                    {% if form.name == "url" %}
-                        Paste a long URL, we'll shorten that.
-                        {{ form }}
-                    {% endif %}
-                {% endfor %}
+                Paste a long URL, we'll shorten that.
+                {{ form }}
                 <button class="submit-btn" type="submit">Shorten URL</button>
             </form>
         {% elif from == "post" %}
@@ -48,8 +43,9 @@
                 <hr style="width: 300px; float: left;">
                 <br>
             </div>
-            <form>
-                <div class="field url-title">
+            <form action="/{{ urlname }}/edit" method="POST">
+                {% csrf_token %}
+                <!--<div class="field url-title">
                     <span>Title</span><br>
                     <input type="text" id='txtt' value="{{title}}"/>
                 </div>
@@ -61,8 +57,12 @@
                 </div>
                 <span style="font-size: 13px; padding: 5px;">
                     Note: The Jabs.ga domain is not working yet, please use the HerokuApp domain.
-                </span><br><br>
-                <button class="save-btn">Save</button>
+                </span><br><br>-->
+                Title:
+                {{form.title}}
+                UrlName:
+                {{form.urlName}}
+                <button class="save-btn" type="submit">Save</button>
             </form>
         {% elif from == "get_url" %}
             <!--Getting the URL-->

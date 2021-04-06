@@ -8,69 +8,76 @@ import random
 def home(request):
     form = NewUrlForm(request.POST or None)
 
+    # Default contexts
     context = {
-        "forms": form,
-        "from": "home"
+        "form": form,
+        "from": None # Where the user came from? Selection: home, get_url
     }
+    
+    if request.method == "POST":
+        context['from'] = "post" # Set that the user is came from "post"
 
+        if form.is_valid():
 
-    # If the method is not POST then just render the html
-    if request.method != "POST":
-        return render(request, 'home.html', context)
+            # Generate Random Strings for default URL
+            random_url = ''.join(random.choice(string.ascii_letters) for i in range(7))
 
-    # Perform form checks
-    if not form.is_valid():
+            # Defaults of the URL
+            title = "My Url"
+            urlName = random_url
+            url = form.cleaned_data['url']
+            
+            register = Url(
+                title=title,
+                urlName=urlName,
+                url=url
+            )
+
+            form = EditUrlForm(None)
+
+            register.save()
+
+            context['form'] = form
+            context['title'] = title
+            context['urlname'] = urlName
+            context['url'] = url
+
+            return render(request, 'home.html', context)
+
         return render(request, "home.html", context)
 
-    random_url = ''.join(random.choice(string.ascii_letters) for i in range(7))
-
-    title = "My Url"
-    urlName = random_url
-    url = form.cleaned_data['url']
-    
-    register = Url(
-        title=title,
-        urlName=urlName,
-        url=url
-    )
-
-    register.save()
-
-    context['from'] = "post"
-    context['title'] = title
-    context['urlname'] = urlName
-    context['url'] = url
-
-    return render(request, 'home.html', context)
+    context['from'] = "home" # Set that the user is came from "home"
+    return render(request, "home.html", context)
 
 def edit_url(request, url):
+    # Get the URL
     url = Url.objects.get(urlName=url)
     form = EditUrlForm(request.POST or None)
 
-    if request.method != "POST":
-        return render(request, 'home.html', context)
-
     # Perform form checks
     if not form.is_valid():
         return render(request, "home.html", context)
 
-    url.title = form.title
-    url.urlName = form.urlName
-    url.url = form.url
+    # Set the edits
+    url.title = form.cleaned_data['title']
+    url.urlName = form.cleaned_data['urlName']
 
+    # Save the Edit
     url.save()
 
+    # Redirect to Home
     return HttpResponseRedirect(f'/')
 
 def get_url(request, url):
     context = {
-        "from": "get_url"
+        "from": "get_url", # Set that user is came from getting the url
+        "url": None # Default
     }
 
+    # Perform checks
     try:
-        url = Url.objects.get(urlName=url)
+        url = Url.objects.get(urlName=url) # Try to get the URL that user has entered in the '/<url>' if there's none return 'None' url
         context["url"] = url.url
         return render(request, 'home.html', context)
-    except:
-        context["url"] = None
+    except Url.DoesNotExist:
         return render(request, 'home.html', context)
