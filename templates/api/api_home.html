@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if request == "welcome" %}
+        Welcome to JABSGA API!
+    {% elif request == "get" %}
+        {% if content == "null" %}
+            {
+                'Error': "Cannot find your URL"
+            }
+        {% else %}
+        {
+            'title': "{{ content.title }}",
+            'url': "{{ content.url }}",
+            'urlName': "{{ content.urlName }}"
+        }
+        {% endif %}
+    {% endif %}
+{% endblock %}
