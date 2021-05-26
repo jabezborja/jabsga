@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block metaredirector %}
+    {% if from == "get_url" %}
+        {% if url is not None %}
+            <meta http-equiv="refresh" content = "0; url={{ url }}" />
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block copyscript %}
     <script src="{% static 'js/home.js' %}"></script>
-{% endblock %}
-
-{% block bodyscript %}
-    {% if from == "get_url" %}
-        {% if url is not None %}
-            onload="start_count('{{ url }}')"
-        {% endif %}
-    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -67,18 +67,10 @@
         {% elif from == "get_url" %}
             <!--Getting the URL-->
             {% if url is not None %}
-                You are being redirected to {{ url }} in <span id="countdown">3</span>
+                You are being redirected to {{ url }}
             {% else %}
                 Sorry your URL does not exist
             {% endif %}
         {% endif %}
     </div>
-{% endblock %}
-
-{% block script %}
-    {% if from == "get_url" %}
-        {% if url is not None %}
-            <script src="{% static 'js/redirector.js' %}"></script>
-        {% endif %}
-    {% endif %}
 {% endblock %}
