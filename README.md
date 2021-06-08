@@ -1,5 +1,5 @@
 # Jabsga: URL shortener for short and concise URLs 💖🇵🇭
-Jabsga is a free URL shortening service for making URLs more shorter and more concise.
+Jabsga is a free URL shortening service for making URLs more shorter and more concise
 
 Example here: https://jabsga.herokuapp.com/zGGGAuV
 
