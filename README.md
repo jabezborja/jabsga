@@ -17,4 +17,4 @@ I don't want to charge the future users of this service or something, let Jabsga
 Jabsga is an opensource project under MIT License, you can contribute to this project and enter this flying rocket ship landing on the moon. Feel free to open a pull requests.
 
 ## Problems or bugs?
-You can open a issue on this GitHub repo and I will review it right after, thank you!
+You can open a issue on this GitHub repo and I will review it right after, thank you!!
