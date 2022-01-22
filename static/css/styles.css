@@ -13,7 +13,7 @@ body {
 }
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 130px;
     top: -5px;
     left: 105%;
     margin-top: 5px;

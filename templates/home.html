@@ -18,52 +18,49 @@
 {% endblock %}
 
 {% block content %}
-    <div>
+    <div class="flex flex-col items-center justify-center align-middle h-screen w-4/12 mx-auto">
         {% if from == "home" %}
             <!--Home Page-->
-            <h1>URL Shortener</h1>
-            <form action="/" method="POST">
+            <h1 class="text-5xl font-bold">Jabs.ga URL Shortener</h1>
+            <form class="flex flex-col w-full" action="/" method="POST">
                 {% csrf_token %}
-                Paste a long URL, we'll shorten that
-                {{ form }}
-                <button class="submit-btn" type="submit">Shorten URL</button>
+                <input name="url" class="mt-7 focus:ring-indigo-500 focus:border-indigo-500 block w-full h-10 pl-7 pr-12 sm:text-sm border-gray-300 rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)]" placeholder="https://discord.com" required>
+                <button class="mt-5 bg-indigo-600 rounded-md p-2 w-9/12 mx-auto text-white font-bold" type="submit">Shorten URL</button>
             </form>
         {% elif from == "post" %}
             <!--Page if the URL is entered-->
-            <h1>Your URL has been shortened!</h1>
             <div>
-                Long URL: {{url}}<br>
-                Shortened URL: <strong style="color: rgb(167, 167, 0);">jabsga.herokuapp.com/{{ urlname }}</strong>
-                <br>
-                <span onclick="copyText('{{ urlname }}')" class="tooltip new-url">
-                    Copy
-                    <span class="tooltiptext">Copy to clipboard</span>
-                </span>
-                <br>
-                <hr style="width: 300px; float: left;">
-                <br>
+                <h1 class="text-3xl font-bold">Your URL has been shortened!</h1>
+                <div>
+                    Long URL: {{url}}<br>
+                    Shortened URL: <strong style="color: rgb(167, 167, 0);">jabsga.herokuapp.com/{{ urlname }}</strong>
+                    <br>
+                    <span onclick="copyText('{{ urlname }}')" class="tooltip bg-[#222222] text-white px-2 cursor-pointer">
+                        Copy
+                        <span class="tooltiptext">Copy to clipboard</span>
+                    </span>
+                    <br>
+                    <hr class="mt-5">
+                    <br>
+                </div>
+                <form action="/{{ urlname }}/edit" method="POST">
+                    {% csrf_token %}
+                    <div class="flex flex-col border border-[#8f8f8f] p-2 rounded-md w-7/12 items-start">
+                        <span class="text-[#555555]">Title</span><br>
+                        <input type="text" id='txtt' value="{{title}}" placeholder="My Link Title"/>
+                    </div>
+                    <div class="mt-3 flex flex-col border border-[#8f8f8f] p-2 rounded-md w-7/12">
+                        <span class="text-[#555555]">Customize Back-Half</span><br>
+                        <label class="flex" for='txt'>jabs.ga/
+                            <input type="text" id='txtt' value="{{urlname}}" placeholder="myurl"/>
+                        </label>
+                    </div>
+                    <span style="font-size: 13px; padding: 5px;">
+                        Note: The Jabs.ga domain is not working yet, please use the HerokuApp domain.
+                    </span><br><br>
+                    <button class="bg-[#222222] text-white px-3 py-1 w-full" type="submit">Save</button>
+                </form>
             </div>
-            <form action="/{{ urlname }}/edit" method="POST">
-                {% csrf_token %}
-                <!--<div class="field url-title">
-                    <span>Title</span><br>
-                    <input type="text" id='txtt' value="{{title}}"/>
-                </div>
-                <div class="field url-name">
-                    <span>Customize Back-Half</span><br>
-                    <label for='txt'>jabs.ga/
-                        <input type="text" id='txtt' value="{{urlname}}"/>
-                    </label>
-                </div>
-                <span style="font-size: 13px; padding: 5px;">
-                    Note: The Jabs.ga domain is not working yet, please use the HerokuApp domain.
-                </span><br><br>-->
-                Title:
-                {{form.title}}
-                UrlName:
-                {{form.urlName}}
-                <button class="save-btn" type="submit">Save</button>
-            </form>
         {% elif from == "get_url" %}
             <!--Getting the URL-->
             {% if url is not None %}
