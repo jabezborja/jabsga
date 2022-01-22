@@ -56,7 +56,7 @@ def edit_url(request, url):
 
     # Perform form checks
     if not form.is_valid():
-        return render(request, "home.html", context)
+        return render(request, "home.html", {})
 
     # Set the edits
     url.title = form.cleaned_data['title']
