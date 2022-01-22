@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="flex flex-col items-center justify-center align-middle h-screen w-4/12 mx-auto">
+    <div class="flex flex-col items-center justify-center align-middle h-screen w-10/12 mx-auto lg:w-4/12">
         {% if from == "home" %}
             <!--Home Page-->
             <h1 class="text-5xl font-bold">Jabs.ga URL Shortener</h1>
@@ -29,7 +29,7 @@
             </form>
         {% elif from == "post" %}
             <!--Page if the URL is entered-->
-            <div>
+            <div class="rounded-md p-9 border border-[#8f8f8f]">
                 <h1 class="text-3xl font-bold">Your URL has been shortened!</h1>
                 <div>
                     Long URL: {{url}}<br>
