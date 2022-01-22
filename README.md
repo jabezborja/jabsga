@@ -1,5 +1,5 @@
 # Jabs.ga: The open-source Bit.ly alternative 💖🇵🇭
-Jabsga is an open-source free URL shortening service for making URLs more shorter and more concise.
+Jabsga is an open-source fast & free URL shortening service for making URLs more shorter and more concise.
 
 Example here: https://jabsga.herokuapp.com/zGGGAuV
 
