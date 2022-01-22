@@ -50,23 +50,7 @@ def home(request):
     return render(request, "home.html", context)
 
 def edit_url(request, url):
-    # Get the URL
-    url = Url.objects.get(urlName=url)
-    form = EditUrlForm(request.POST or None)
-
-    # Perform form checks
-    if not form.is_valid():
-        return render(request, "home.html", {})
-
-    # Set the edits
-    url.title = form.cleaned_data['title']
-    url.urlName = form.cleaned_data['urlName']
-
-    # Save the Edit
-    url.save()
-
-    # Redirect to Home
-    return HttpResponseRedirect(f'/')
+    print("Edit URL")
 
 def get_url(request, url):
     context = {

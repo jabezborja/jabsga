@@ -43,8 +43,8 @@
                     <hr class="mt-5">
                     <br>
                 </div>
-                <form action="/{{ urlname }}/edit" method="POST">
-                    {% csrf_token %}
+                <form>
+                    <!--{% csrf_token %}-->
                     <div class="flex flex-col border border-[#8f8f8f] p-2 rounded-md w-7/12 items-start">
                         <span class="text-[#555555]">Title</span><br>
                         <input type="text" id='txtt' value="{{title}}" placeholder="My Link Title"/>
@@ -58,7 +58,7 @@
                     <span style="font-size: 13px; padding: 5px;">
                         Note: The Jabs.ga domain is not working yet, please use the HerokuApp domain.
                     </span><br><br>
-                    <button class="bg-[#222222] text-white px-3 py-1 w-full" type="submit">Save</button>
+                    <button class="bg-[#222222] text-white px-3 py-1 w-full">Back-Half Editor Coming Soon!</button>
                 </form>
             </div>
         {% elif from == "get_url" %}
